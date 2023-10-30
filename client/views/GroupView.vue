@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { onBeforeMount, ref } from "vue";
+import { onBeforeMount, ref, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import CaptionList from "../components/Caption/CaptionList.vue";
 import CreateCaptionDialog from "../components/Caption/CreateCaptionDialog.vue";
@@ -10,6 +10,13 @@ let currentGroupName = ref(useRoute().params.name);
 let currentGroup = ref<{ [k: string]: string }>({ _id: "" });
 let groupLoaded = ref(false);
 let timelineRef = ref<{ [k: string]: () => void }>({});
+
+watch(useRoute(), async (old, newRoute) => {
+  currentGroupName.value = newRoute.params.name;
+  groupLoaded.value = false;
+  await loadGroupInfo(currentGroupName.value);
+  groupLoaded.value = true;
+});
 
 const loadGroupInfo = async (name: string | string[]) => {
   let groupResults;
