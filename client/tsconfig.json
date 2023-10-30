@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "checkJs": false,
+    "strict": false,
+    "sourceMap": true,
+    "resolveJsonModule": true,
+    "allowJs": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "lib": ["ESNext", "dom"],
+    "paths": {
+      "@/*": ["./*"]
+    },
+    "outDir": "../dist/client"
+  },
+  "include": ["./**/*.ts", "./**/*.vue"]
+}
